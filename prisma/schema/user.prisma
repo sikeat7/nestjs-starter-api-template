@@ -1,0 +1,144 @@
+enum AuthProvider {
+    CREDENTIALS
+    GOOGLE
+    FACEBOOK
+    GITHUB
+    APPLE
+}
+
+model User {
+    id              String       @id @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid // UUID or cuid for unique user ID
+    email           String?      @map("email") @db.Citext // Case-insensitive email
+    username        String?      @map("username") @db.Citext
+    password        String?      @map("password") @db.VarChar(1000) // Sufficient for bcrypt hashes
+    firstName       String?      @map("first_name") @db.VarChar(200)
+    lastName        String?      @map("last_name") @db.VarChar(200)
+    displayName     String?      @map("display_name") @db.VarChar(300)
+    phoneNumber     String?      @map("phone_number") @db.VarChar(20)
+    profileImageUrl String?      @map("profile_image_url") @db.VarChar(2048)
+    provider        AuthProvider @default(CREDENTIALS) @map("provider")
+    providerId      String?      @map("provider_id") @db.VarChar(100)
+    isEmailVerified Boolean      @default(false) @map("is_email_verified")
+    isPhoneVerified Boolean      @default(false) @map("is_phone_verified")
+    isActive        Boolean      @default(true) @map("is_active")
+
+    dob     DateTime? @map("dob") @db.Date // Date of birth
+    gender  String?   @map("gender") @db.VarChar(50) // Gender of the user
+    bio     String?   @map("bio") @db.Text // User biography or description
+    tagline String?   @map("tagline") @db.VarChar(300) // Short user tagline or status message
+    website String?   @map("website") @db.VarChar(2048) // Personal or professional website URL
+
+    // Localization
+    countryCodeIso3 String?  @map("country_code_iso3") @db.VarChar(5) // ISO 3166-1 alpha-3 country code
+    country         Country? @relation(fields: [countryCodeIso3], references: [codeIso3], onDelete: SetNull)
+
+    timezone String? @map("timezone") @db.VarChar(50) // IANA timezone format, e.g., "America/New_York"
+    locale   String? @map("locale") @db.VarChar(10) // e.g., "en-US"
+
+    // Extensibility
+    metadata Json? @map("metadata") // For storing additional user preferences/data
+
+    // Timestamps
+    createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+    updatedAt DateTime? @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+    // Relations
+    roles                 UserRole[]
+    userSessions          UserSession[]
+    userTokens            UserToken[]
+    userPasswordHistories UserPasswordHistory[]
+
+    @@unique([provider, providerId], name: "uq_users_provider_provider_id")
+    @@map("users")
+}
+
+model Role {
+    id          String  @id @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid // UUID or cuid for unique role ID
+    name        String  @unique @map("name") @db.VarChar(100)
+    description String? @map("description") @db.VarChar(500)
+    isActive    Boolean @default(true) @map("is_active")
+
+    // Relations
+    users UserRole[]
+
+    @@map("roles")
+}
+
+model UserRole {
+    userId String @map("user_id") @db.Uuid // UUID or cuid for unique user ID
+    roleId String @map("role_id") @db.Uuid // UUID or cuid for unique role ID
+
+    // Relations with cascade delete
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+    @@id([userId, roleId])
+    @@index([roleId], name: "idx_user_roles_role_id")
+    @@map("user_roles")
+}
+
+model UserSession {
+    id     String @id @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid
+    userId String @map("user_id") @db.Uuid
+    token  String @unique @map("token") @db.Text // Secure token for session management
+
+    ipAddress String? @map("ip_address") @db.VarChar(45) // IPv4 or IPv6 address
+    userAgent String? @map("user_agent") @db.Text // User agent string
+
+    expiresAt DateTime @map("expires_at") @db.Timestamptz(3) // Expiration timestamp for the session
+
+    isActive Boolean @default(false) @map("is_active") // Indicates if the session is active
+
+    createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(3) // Creation timestamp for the session
+    lastUsedAt DateTime? @map("last_used_at") @db.Timestamptz(3) // Last used timestamp for the session
+
+    // Relations with cascade delete
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([expiresAt], name: "idx_user_sessions_expires_at")
+    @@map("user_sessions")
+}
+
+// Table to store tokens like password reset, email validation tokens
+model UserToken {
+    id     String    @id @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid
+    userId String    @map("user_id") @db.Uuid
+    token  String    @unique @map("token") @db.VarChar(500)
+    type   String    @map("type") @db.VarChar(50) // Type of token (e.g., "PASSWORD_RESET", "EMAIL_VERIFICATION", "PHONE_VERIFICATION", "API_KEY", "TWO_FACTOR_BACKUP")
+    isUsed Boolean   @default(false) @map("is_used")
+    usedAt DateTime? @map("used_at") @db.Timestamptz(3)
+
+    // Additional context
+    ipAddress String? @map("ip_address") @db.VarChar(45)
+    userAgent String? @map("user_agent") @db.VarChar(1000)
+
+    // Timestamps
+    createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+    expiresAt DateTime @map("expires_at") @db.Timestamptz(3)
+
+    // Relations with cascade delete
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    // Indexes    
+    // Efficient cleanup: WHERE expires_at < now()
+    @@index([expiresAt], name: "idx_user_tokens_expires_at")
+    @@map("user_tokens")
+}
+
+// Password history table for security compliance
+model UserPasswordHistory {
+    id           String   @id @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid
+    userId       String   @map("user_id") @db.Uuid // UUID or cuid for unique user ID
+    passwordHash String   @map("password_hash") @db.VarChar(1000) // Sufficient for bcrypt hashes
+    createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+    // Relations
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    // Indexes
+    // Fast "has this hash been used by this user?" AND prevents duplicates
+    @@unique([userId, passwordHash], name: "uq_pwdhist_user_hash")
+    // Fast "latest N" per user: WHERE user_id=$1 ORDER BY created_at DESC LIMIT N
+    @@index([userId, createdAt(sort: Desc)], name: "idx_pwdhist_user_created_desc")
+    @@map("user_password_history")
+}

@@ -1,0 +1,9 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "http://localhost:3001/api",
+      "clientId": "fjhgsdf34758374sdjfhlgshfwerm4325094563asdfasdf",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI3NDhmM2ViLWM5YTgtNGM1Mi04ZjQxLWUwYTZiMmU1ZjAxYyIsInN1YiI6ImI3NDhmM2ViLWM5YTgtNGM1Mi04ZjQxLWUwYTZiMmU1ZjAxYyIsImVtYWlsIjoia3VtYXJzb251Njc2QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoia3VtYXJzb251Njc2IiwiZmlyc3ROYW1lIjoiU29udSIsImxhc3ROYW1lIjoiS3VtYXIiLCJkaXNwbGF5TmFtZSI6IlNvbnUgS3VtYXIiLCJwcm9maWxlSW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjpudWxsLCJyb2xlcyI6W3siaWQiOiIwN2NjZWMwZi00YjZmLTQyMjktYjI5YS00ZWQ2MDUxNjNkZGMiLCJuYW1lIjoiQURNSU5JU1RSQVRPUiIsImRlc2NyaXB0aW9uIjoiQWRtaW5pc3RyYXRvciB3aXRoIGZ1bGwgYWNjZXNzIn1dLCJpYXQiOjE3NjY0MzUxNjEsImV4cCI6MTc2OTAyNzE2MSwiYXVkIjoiKiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMSJ9.ZTdpQfk3-YwBzuMSBg4afzp1LwVBdtdD5DDkRW6PkiU"
+    }
+  }
+}
